@@ -1,0 +1,95 @@
+#include<iostream>
+using namespace std;
+
+int summa(int a, int b) {
+	return a == b ? b : a + summa(a + 1, b);
+}
+
+int f1(int n, int& m, int k = 0) {
+
+    if (n > 0) {
+        k += (n % 10);
+        n /= 10;
+        ++m;
+        return f1(n, m, k);
+    }
+    else{
+        return k;
+    } 
+}
+
+int main() {
+	int a;
+	cout << "Введите номер задания:" << "\n" << "1. Задание 1" << "\n" << "2. Задание 2" << "\n3. выход \n";
+	cin >> a;
+	while (cin.fail() || a > 3 || a < 1)
+	{
+		cout << "Ошибка ввода!Повторите!\n";
+		cin.clear();
+		cin.ignore(32767, '\n');
+		cin >> a;
+		cout << endl;
+	}
+	bool k = 0;
+	while (k != 1) {
+
+		switch (a) {
+		case 1:
+		{
+			int  b;
+			cout << "введите любое число" << endl;
+			cin >> b;
+			while (cin.fail() || b < 0) {
+				cout << "ошибка ввода! повторите!" << endl;
+				cin.clear();
+				cin.ignore(32767, '\n');
+				cin >> b;
+			}
+			cout << "ваша сумма: " << summa(0, b)<< endl;
+
+			break;
+		}
+		case 2: {
+
+
+			int n;
+			cout << "введите число"<< endl;
+			cin >> n;
+		    while (cin.fail() || n < 0) {
+		        cout << "введено неверное значение" << endl;
+        		cin.clear();
+		        cin.ignore(32767, '\n');
+		        cin >> n;
+		    }
+			int m = 0;
+			cout << "сумма: " << f1(n, m) << "\nколичество цифр: " << m << endl;
+		}
+			  break;
+
+		case 3: {
+			cout << "выход из программы...";
+		default: k = 1;
+
+		}
+
+		}
+		if (k == 1) {
+			break;
+		}
+		else {
+			cout << "Введите номер задания:" << endl;
+			cin >> a;
+			while (cin.fail() || a > 3 || a < 1)
+			{
+				cout << "Ошибка ввода!Повторите!\n";
+				cin.clear();
+				cin.ignore(32767, '\n');
+				cin >> a;
+				cout << endl;
+			}
+		}
+
+	}
+	return 0;
+}
+
